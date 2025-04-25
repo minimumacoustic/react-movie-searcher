@@ -1,0 +1,28 @@
+.input {
+    font-size: 17px;
+    margin-top: 67px;
+    margin-left: 301px;
+    margin-right: 0;
+    height: 30px;
+    width: 1226px;
+}
+
+.submit {
+    border-radius: 7%;
+    color: white;
+    background-color: rgb(209, 6, 6);
+    margin-top: 67px;
+    margin-left: 00px;
+    height: 36px;
+    width: 84px;
+    line-height: 30px;
+    border: 0;
+}
+
+.wrapper {
+    display: flex
+}
+
+.results {
+    
+}
