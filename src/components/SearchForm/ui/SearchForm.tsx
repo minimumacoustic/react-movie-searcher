@@ -101,9 +101,9 @@ export function SearchForm() {
             onValueChange={setUserinput}
             classNames={{
               inputWrapper: "rounded-r-none",
-              input: "lg:text-lg/7 text-2xl",
+              input: "lg:text-lg/7 text-lg",
             }}
-            className="w-[65%] mt-2  mr-0  lg:text-lg/7 text-2xl"
+            className="w-[40%] 2xl:w-[65%] md:w-[45%] mt-2  mr-0  lg:text-lg/7 text-lg"
           />
           <Button
             color="primary"

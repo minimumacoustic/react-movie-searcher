@@ -27,13 +27,13 @@ export function ThemeSwitcher() {
   }, []);
 
   return (
-    <Switch
+    <Switch 
       classNames={{
-        label: "lg:block hidden",
+        label: "lg:block hidden"
       }}
       className={clsx(
         "fixed  transition-top duration-200 ease-in-out lg:right-13",
-        { "top-1": hasScrolled, "lg:top-24 top-34": !hasScrolled },
+        { "top-1": hasScrolled, "lg:top-24 top-24": !hasScrolled },
       )}
       onChange={switchTheme}
       defaultSelected
