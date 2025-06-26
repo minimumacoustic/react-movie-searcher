@@ -2,7 +2,7 @@ import { useTheme } from "@heroui/use-theme";
 import { Switch } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { clsx } from "clsx";
-import { useThrottle } from "../../../../customhooks";
+import { useThrottle } from "../../../shared/customhooks";
 import { SunIcon, MoonIcon } from "./icons";
 
 export function ThemeSwitcher() {
@@ -27,9 +27,9 @@ export function ThemeSwitcher() {
   }, []);
 
   return (
-    <Switch 
+    <Switch
       classNames={{
-        label: "lg:block hidden"
+        label: "lg:block hidden",
       }}
       className={clsx(
         "fixed  transition-top duration-200 ease-in-out lg:right-13",

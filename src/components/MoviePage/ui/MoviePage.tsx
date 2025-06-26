@@ -1,9 +1,8 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { getFilmByID, Movie } from "../../../../getfilmbyid";
-import { ErrorMessage } from "../../Error/ui/Error";
-import { Loader } from "../../Loader/ui/Loader";
-
+import { getFilmByID, Movie } from "../../../shared/getfilmbyid";
+import { ErrorMessage } from "../../Error";
+import { Loader } from "../../Loader";
 
 export function MoviesPage() {
   const [film, setFilm] = useState<Movie | null>(null);
@@ -31,11 +30,9 @@ export function MoviesPage() {
     return <ErrorMessage message={errorMessage} />;
   }
 
-   if (film === null) {
-    return <Loader/>
+  if (film === null) {
+    return <Loader />;
   }
-
-
 
   return (
     <>

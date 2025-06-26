@@ -1,1 +1,1 @@
-import { ErrorMessage } from "./ui/Error";
+export { ErrorMessage } from "./ui/Error";

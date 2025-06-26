@@ -2,7 +2,7 @@ import { useRef, useCallback, useEffect } from "react";
 
 export function useThrottle(cb: () => void, delay: number) {
   const lastExecuted = useRef(0);
-  const timeoutId = useRef(0);
+  const timeoutId = useRef<ReturnType<Window['setTimeout']> | null>(null);
 
   const throttledFn = useCallback(
     (...args: []) => {
@@ -16,8 +16,8 @@ export function useThrottle(cb: () => void, delay: number) {
       }
       // Otherwise, schedule execution after remaining delay
       else {
-        clearTimeout(timeoutId.current);
-        timeoutId.current = setTimeout(() => {
+        if (timeoutId.current !== null) clearTimeout(timeoutId.current);
+        timeoutId.current = window.setTimeout(() => {
           lastExecuted.current = Date.now();
           cb(...args);
         }, delay - timeSinceLastExec);
@@ -29,7 +29,7 @@ export function useThrottle(cb: () => void, delay: number) {
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      clearTimeout(timeoutId.current);
+      if (timeoutId.current !== null) clearTimeout(timeoutId.current);
     };
   }, []);
 

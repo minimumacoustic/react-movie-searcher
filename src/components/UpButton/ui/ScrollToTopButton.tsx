@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@heroui/react";
 import { clsx } from "clsx";
-import { useThrottle } from "../../../../customhooks";
+import { useThrottle } from "../../../shared/customhooks";
 
 export function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);

@@ -1,7 +1,7 @@
-import { useThrottle } from "../../../../customhooks";
+import { useThrottle } from "../../../shared/customhooks";
 import { useState, FormEvent, useEffect, useTransition } from "react";
 import { Button, Form, Input, Skeleton, Image } from "@heroui/react";
-import { getMovies } from "../../../../getmovies";
+import { getMovies } from "../../../shared/getmovies";
 import { Link } from "react-router";
 import axios from "axios";
 import { ScrollToTopButton } from "../../UpButton";
@@ -23,7 +23,7 @@ export function SearchForm() {
   const fetchData = (
     searchQuery: string,
     page: number,
-    signal: AbortController['signal'],
+    signal: AbortController["signal"],
   ) => {
     startLoading(async () => {
       setError(null);
@@ -39,8 +39,7 @@ export function SearchForm() {
           );
         }
       }
-    })
-
+    });
   };
 
   useEffect(() => {
@@ -49,26 +48,22 @@ export function SearchForm() {
     return () => controller.abort();
   }, [userInput, page]);
 
-  const loadMoreOnScroll = useThrottle(
-    () => {
-      const bottom =
-        Math.ceil(window.innerHeight + window.scrollY) >=
-        document.documentElement.scrollHeight - 1450;
-      if (bottom && !isLoading && userInput) {
-        setPage((prevPage) => {
-          const nextPage = prevPage + 1;
-          return nextPage;
-        });
-      }
-    },
-    300,
-  );
+  const loadMoreOnScroll = useThrottle(() => {
+    const bottom =
+      Math.ceil(window.innerHeight + window.scrollY) >=
+      document.documentElement.scrollHeight - 1450;
+    if (bottom && !isLoading && userInput) {
+      setPage((prevPage) => {
+        const nextPage = prevPage + 1;
+        return nextPage;
+      });
+    }
+  }, 300);
 
   useEffect(() => {
     window.addEventListener("scroll", loadMoreOnScroll);
     return () => {
       window.removeEventListener("scroll", loadMoreOnScroll);
-     
     };
   }, [userInput, isLoading]);
 
@@ -83,7 +78,7 @@ export function SearchForm() {
 
   return (
     <div>
-       <ScrollToTopButton />
+      <ScrollToTopButton />
       <div className="">
         <Form
           className="flex flex-row gap-0 justify-center"
