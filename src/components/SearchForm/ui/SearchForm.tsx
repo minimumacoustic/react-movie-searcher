@@ -57,7 +57,6 @@ export function SearchForm() {
       if (bottom && !isLoading && userInput) {
         setPage((prevPage) => {
           const nextPage = prevPage + 1;
-          // fetchData(userInput, nextPage, true);
           return nextPage;
         });
       }
@@ -80,7 +79,6 @@ export function SearchForm() {
     ).trim();
     setPage(1);
     setUserinput(inputValue);
-    // fetchData(inputValue, 1, false);
   };
 
   return (

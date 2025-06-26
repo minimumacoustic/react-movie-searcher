@@ -4,34 +4,31 @@ import { getFilmByID, Movie } from "../../../../getfilmbyid";
 import { ErrorMessage } from "../../Error/ui/Error";
 import { Loader } from "../../Loader/ui/Loader";
 
-interface Rating {
-  Source: string;
-  Value: string;
-}
 
 export function MoviesPage() {
   const [film, setFilm] = useState<Movie | null>(null);
+
   const [errorMessage, setErrorMessage] = useState("");
   const { id } = useParams();
   const url = `https://www.omdbapi.com/?i=${id}&apikey=${import.meta.env.VITE_API_KEY}`;
 
   useEffect(() => {
-    async function fff() {
+    async function fetchFilm() {
       try {
-        const aaaa = await getFilmByID(url);
-        if (aaaa.Response === "False") {
-          throw Error(aaaa.Error);
+        const data = await getFilmByID(url);
+        if (data.Response === "False") {
+          throw Error(data.Error);
         }
-        setFilm(aaaa);
+        setFilm(data);
       } catch (e) {
         setErrorMessage((e as Error).message || "Something wrong");
       }
     }
-    fff();
+    fetchFilm();
   }, []);
 
   if (errorMessage) {
-    return <ErrorMessage messa={errorMessage} />;
+    return <ErrorMessage message={errorMessage} />;
   }
 
    if (film === null) {
@@ -98,7 +95,7 @@ export function MoviesPage() {
         <div>
           <strong>Ratings:</strong>
           {film.Ratings?.length ? (
-            film.Ratings.map((rating: Rating, index: number) => (
+            film.Ratings.map((rating, index) => (
               <span key={index}>
                 <strong className="ml-3">{rating.Source}:</strong>{" "}
                 {rating.Value}
