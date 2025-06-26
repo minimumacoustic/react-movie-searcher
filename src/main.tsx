@@ -8,7 +8,7 @@ import App from "./App.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <HeroUIProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="react-movie-searcher">
         <App />
       </BrowserRouter>
     </HeroUIProvider>
